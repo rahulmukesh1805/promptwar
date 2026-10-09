@@ -4,7 +4,8 @@ cd /d "%~dp0"
 echo ====================================================
 echo Pushing files to GitHub: rahulmukesh1805/promptwar
 echo ====================================================
-echo.
+git add -A
+git commit -m "Fix Cloudflare Pages white screen: add SPA redirects, base path, error boundary, and root build config"
 git push -u origin main
 echo.
 if %ERRORLEVEL% EQU 0 (

@@ -79,20 +79,38 @@ export const storageService = {
   },
 
   isDemoMode(): boolean {
-    const val = localStorage.getItem(DEMO_MODE_KEY);
-    return val === null ? true : val === 'true';
+    try {
+      const val = localStorage.getItem(DEMO_MODE_KEY);
+      return val === null ? true : val === 'true';
+    } catch (e) {
+      console.warn('Storage read error (demoMode):', e);
+      return true;
+    }
   },
 
   setDemoMode(enabled: boolean) {
-    localStorage.setItem(DEMO_MODE_KEY, String(enabled));
+    try {
+      localStorage.setItem(DEMO_MODE_KEY, String(enabled));
+    } catch (e) {
+      console.warn('Storage write error (demoMode):', e);
+    }
   },
 
   getSavedLanguage(): SupportedLanguage {
-    const lang = localStorage.getItem(LANGUAGE_KEY) as SupportedLanguage | null;
-    return lang || 'en';
+    try {
+      const lang = localStorage.getItem(LANGUAGE_KEY) as SupportedLanguage | null;
+      return lang || 'en';
+    } catch (e) {
+      console.warn('Storage read error (language):', e);
+      return 'en';
+    }
   },
 
   setSavedLanguage(lang: SupportedLanguage) {
-    localStorage.setItem(LANGUAGE_KEY, lang);
+    try {
+      localStorage.setItem(LANGUAGE_KEY, lang);
+    } catch (e) {
+      console.warn('Storage write error (language):', e);
+    }
   },
 };

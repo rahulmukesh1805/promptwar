@@ -11,7 +11,7 @@ import {
 } from '../types';
 import { storageService } from './storageService';
 
-const BACKEND_BASE = '/api';
+const BACKEND_BASE = (import.meta.env.VITE_API_BASE_URL as string) || '/api';
 
 // Multilingual status indicators for table
 const STATUS_TRANSLATIONS: Record<SupportedLanguage, { outside: string; normal: string; attention: string }> = {
